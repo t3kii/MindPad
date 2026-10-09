@@ -1,0 +1,33 @@
+name: Clear stuck Pages deployment
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/recover-pages.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+
+# Recovery must run independently of the publishing queue it is unblocking.
+concurrency:
+  group: pages-recovery
+  cancel-in-progress: false
+
+jobs:
+  recover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - name: Cancel the earlier stuck Pages deployment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const clearStaleDeployment = require('./.github/scripts/clear-stale-pages-deployment.cjs');
+            await clearStaleDeployment({
+              github, context, core,
+              deploymentId: 'f2e27419e4b20f2376700293cd08b68636a704d2',
+            });
