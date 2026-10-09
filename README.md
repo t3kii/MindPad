@@ -30,6 +30,8 @@ Playwright uses `/usr/bin/chromium` when available. Else install its browser wit
 
 Double click empty canvas or use **+** to create a cell. Double click its title to rename. Click **Click to write** to open the editor. Drag the header to move; resize the selected open cell with corner handles. **Aa** opens the color palette. Right click a cell for actions.
 
+Closed text previews grow to show the full text. Clicking away from an open cell expands its reading view to show all content; selecting it again returns to the resizable editor. Both canvas and cell backgrounds use lighter colors for readability.
+
 Drag a connection handle onto another cell, or choose **Connect to cell** and click a destination. Select a line to change its label, color, arrow or delete it. **Undo / redo** applies to board operations; editor text has its own history.
 
 The lower text toolbar supports headings and lists; selecting text exposes bold, italic and underline. **+** opens insertion and additional formatting actions: links, local raster images, MP4/WebM videos, PDF attachments, tables, LaTeX expressions and code. Each cell can contain multiple independent pages. Images/videos are limited to 10 MB per file and PDFs to 20 MB.

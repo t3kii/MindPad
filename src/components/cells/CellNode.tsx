@@ -115,7 +115,8 @@ export function CellNode({ data, selected, dragging }: NodeProps<CanvasNode>) {
     JSON.stringify(page.content).includes('"image"') ||
     JSON.stringify(page.content).includes('"localVideo"');
   const controls = !presentation && (selected || hover || cell.opened);
-  const width = cell.opened
+  const showPreview = hasContent && cell.preview !== false;
+  const width = cell.opened || showPreview
     ? cell.width
     : selected
       ? 376
@@ -127,11 +128,13 @@ export function CellNode({ data, selected, dragging }: NodeProps<CanvasNode>) {
           ),
         );
   const height = cell.opened
-    ? cell.height
-    : selected
-      ? 158
-      : hasContent && cell.preview !== false
-        ? 180
+    ? selected
+      ? cell.height
+      : "auto"
+    : showPreview
+      ? "auto"
+      : selected
+        ? 158
         : 78;
   const palette = (el: HTMLElement) => {
     const r = el.getBoundingClientRect();
@@ -257,10 +260,11 @@ export function CellNode({ data, selected, dragging }: NodeProps<CanvasNode>) {
         )}
       </AnimatePresence>
       <motion.div
-        className="cell-card"
+        className={`cell-card${cell.opened && !selected ? " reading" : ""}`}
         style={
           {
             "--header": cell.color,
+            minHeight: cell.opened && !selected ? cell.height : undefined,
             "--header-text": ["#784f67", "#79547e"].includes(cell.color)
               ? "#f1d1e8"
               : "#c1f4f5",
@@ -309,7 +313,7 @@ export function CellNode({ data, selected, dragging }: NodeProps<CanvasNode>) {
               useStore.getState().updateCell(cell.id, { opened: true });
             }}
           >
-            {hasContent && cell.preview !== false ? (
+            {showPreview ? (
               <span className="compact-content">
                 {content || "Media attachment"}
               </span>
@@ -319,7 +323,7 @@ export function CellNode({ data, selected, dragging }: NodeProps<CanvasNode>) {
               </>
             )}
           </button>
-        ) : hasContent && cell.preview !== false ? (
+        ) : showPreview ? (
           <div
             className="compact-preview"
             onDoubleClick={(e) => {

@@ -1,5 +1,7 @@
 # Visual comparison
 
+These reference comparisons describe the original recreation baseline. A later user-requested readability update intentionally lightens the canvas and cell backgrounds and expands text previews and unselected open cells to show all text. Current dark canvas/body colors are #30302b/#50504a; light colors are #f5f5f0/#fafaf5. The historical reference screenshots and measurements below retain the baseline colors.
+
 Source frames: original1918×994 video; user-supplied material only. Implementation: Playwright Chromium at the same1918×994 viewport,100% canvas zoom. The reference replay uses actual UI gestures and reconstructs the pink and blue cell titles, list content, positions, palette, selection, connection and image dialog. See implementation-screenshots/reference-*.png. Reference recordings are not application assets.
 
 ## Verified anchors
