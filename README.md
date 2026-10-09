@@ -1,6 +1,6 @@
 # MindPad — Personal Visual Canvas
 
-A private visual knowledge canvas inspired by the user-supplied OrgPad recording. Original implementation and branding; no proprietary source, assets, private APIs, accounts or paid services.
+A private visual knowledge canvas. Original implementation and branding; no proprietary source, assets, private APIs, accounts or paid services.
 
 ## Run
 
