@@ -4,7 +4,7 @@ A private visual knowledge canvas. Original implementation and branding; no prop
 
 ## Run
 
-The browser version is hosted at https://t3kii.github.io/MindPad/ once GitHub Pages is enabled. In the repository's **Settings → Pages**, select **GitHub Actions** as the source. Then open **Actions → Deploy browser app → Run workflow**, select `main`, and run it. After the first successful deployment, the workflow rebuilds and deploys the site after every push to `main`.
+The browser version is hosted at https://t3kii.github.io/MindPad/ once GitHub Pages is enabled. In the repository's **Settings → Pages**, select **GitHub Actions** as the source. Then open **Actions → Deploy static content to Pages → Run workflow**, select `main`, and run it. After the first successful deployment, the workflow rebuilds and deploys the site after every push to `main`.
 
 Your boards are saved in your browser, so export backups to move them between devices.
 
