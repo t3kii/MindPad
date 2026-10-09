@@ -47,6 +47,15 @@ jobs:
         with:
           # Upload the compiled browser app, including its bundled assets.
           path: dist
+      - name: Clear the earlier overlapping Pages deployment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const clearStaleDeployment = require('./.github/scripts/clear-stale-pages-deployment.cjs');
+            await clearStaleDeployment({
+              github, context, core,
+              deploymentId: 'f2e27419e4b20f2376700293cd08b68636a704d2',
+            });
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
