@@ -4,6 +4,10 @@ A private visual knowledge canvas inspired by the user-supplied OrgPad recording
 
 ## Run
 
+The browser version is hosted at https://t3kii.github.io/MindPad/ once GitHub Pages is enabled. In the repository's **Settings → Pages**, select **GitHub Actions** as the source. Then open **Actions → Deploy browser app → Run workflow**, select `main`, and run it. After the first successful deployment, the workflow rebuilds and deploys the site after every push to `main`.
+
+Your boards are saved in your browser, so export backups to move them between devices.
+
 Requires Node.js 22.12+ (verified with 24.19) and npm. From this checkout:
 
 ```sh
