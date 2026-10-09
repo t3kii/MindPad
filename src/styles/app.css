@@ -75,6 +75,10 @@ input:focus {
   --icon: #3c6c8b;
   --border: #b9b9ae;
 }
+.app[data-background="dark"] {
+  --canvas: #1f1f1c;
+  --cell: #3a3a35;
+}
 .topbar {
   height: 54px;
   flex-shrink: 0;
@@ -198,6 +202,20 @@ input:focus {
   letter-spacing: 0.5px;
 }
 .export-button:hover {
+  background: var(--hover);
+}
+.background-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 34px;
+  padding: 0 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--text);
+}
+.background-button:hover {
   background: var(--hover);
 }
 .local-profile {
@@ -388,9 +406,9 @@ input:focus {
   box-shadow: 0 0 0 2px var(--icon);
 }
 .editor-body {
-  flex: 1;
+  flex: none;
   min-height: 0;
-  overflow: auto;
+  overflow: visible;
   padding: 18px 27px 24px;
   border-radius: 0 0 28px 28px;
 }
@@ -402,10 +420,6 @@ input:focus {
   color: var(--text);
   cursor: text;
   overflow-wrap: anywhere;
-}
-.cell-card.reading .editor-body {
-  flex: none;
-  overflow: visible;
 }
 .rich-editor p {
   margin: 0 0 6px;
@@ -1065,6 +1079,9 @@ input:focus {
   }
 }
 @media (max-width: 650px) {
+  .background-button span {
+    display: none;
+  }
   .display-button,
   .nav-left > .icon-button:nth-of-type(2),
   .export-button span {

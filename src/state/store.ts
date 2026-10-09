@@ -11,6 +11,12 @@ import {
   type Connection,
 } from "../types";
 import { parseImport } from "../utils/transfer";
+type Background = "dark" | "lighter" | "light";
+const savedBackground = localStorage.getItem("mindpad-background");
+const initialBackground: Background =
+  savedBackground === "dark" || savedBackground === "lighter" || savedBackground === "light"
+    ? savedBackground
+    : localStorage.getItem("mindpad-theme") === "light" ? "light" : "lighter";
 type State = {
   revision: number;
   board: Board;
@@ -23,6 +29,7 @@ type State = {
   status: "saved" | "saving" | "error";
   error: string;
   theme: "dark" | "light";
+  background: Background;
   presentation: boolean;
   connectSource: string | null;
   init: () => Promise<void>;
@@ -46,6 +53,7 @@ type State = {
   deleteBoard: (id: string) => Promise<void>;
   importBoards: (raw: string) => Promise<void>;
   toggleTheme: () => void;
+  setBackground: (background: Background) => void;
 };
 const clone = <T>(v: T): T => structuredClone(v);
 let timer: ReturnType<typeof setTimeout>;
@@ -72,7 +80,8 @@ export const useStore = create<State>((set, get) => ({
   future: [],
   status: "saved",
   error: "",
-  theme: localStorage.getItem("mindpad-theme") === "light" ? "light" : "dark",
+  theme: initialBackground === "light" ? "light" : "dark",
+  background: initialBackground,
   presentation: false,
   connectSource: null,
   init: async () => {
@@ -309,8 +318,12 @@ export const useStore = create<State>((set, get) => ({
     localStorage.setItem("mindpad-current", incoming[0].id);
   },
   toggleTheme: () => {
-    const theme = get().theme === "dark" ? "light" : "dark";
+    get().setBackground(get().theme === "dark" ? "light" : "lighter");
+  },
+  setBackground: (background) => {
+    const theme = background === "light" ? "light" : "dark";
     localStorage.setItem("mindpad-theme", theme);
-    set({ theme });
+    localStorage.setItem("mindpad-background", background);
+    set({ theme, background });
   },
 }));

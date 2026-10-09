@@ -5,6 +5,7 @@ import { useStore } from "../state/store";
 export function App() {
   const ready = useStore((s) => s.ready);
   const theme = useStore((s) => s.theme);
+  const background = useStore((s) => s.background);
   useEffect(() => {
     void useStore.getState().init();
     const flush = () => {
@@ -15,7 +16,7 @@ export function App() {
     return () => document.removeEventListener("visibilitychange", flush);
   }, []);
   return (
-    <div className="app" data-theme={theme}>
+    <div className="app" data-theme={theme} data-background={background}>
       {ready ? <Canvas /> : <div className="loading">Opening your canvas…</div>}
       <OverlayHost />
     </div>

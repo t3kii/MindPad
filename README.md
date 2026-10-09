@@ -30,7 +30,7 @@ Playwright uses `/usr/bin/chromium` when available. Else install its browser wit
 
 Double click empty canvas or use **+** to create a cell. Double click its title to rename. Click **Click to write** to open the editor. Drag the header to move; resize the selected open cell with corner handles. **Aa** opens the color palette. Right click a cell for actions.
 
-Closed text previews grow to show the full text. Clicking away from an open cell expands its reading view to show all content; selecting it again returns to the resizable editor. Both canvas and cell backgrounds use lighter colors for readability.
+Cells grow to show the full text while editing, after clicking away, and in closed previews. Resizing sets the minimum editor height; content can expand beyond it. Use **Background** in the top bar to choose **Dark**, **Lighter**, or **Light** backgrounds. Your choice stays saved in this browser.
 
 Drag a connection handle onto another cell, or choose **Connect to cell** and click a destination. Select a line to change its label, color, arrow or delete it. **Undo / redo** applies to board operations; editor text has its own history.
 

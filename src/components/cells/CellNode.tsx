@@ -127,15 +127,7 @@ export function CellNode({ data, selected, dragging }: NodeProps<CanvasNode>) {
             cell.title.length * (cell.titleSize ?? 35) * (16 / 35) + 44,
           ),
         );
-  const height = cell.opened
-    ? selected
-      ? cell.height
-      : "auto"
-    : showPreview
-      ? "auto"
-      : selected
-        ? 158
-        : 78;
+  const height = cell.opened || showPreview ? "auto" : selected ? 158 : 78;
   const palette = (el: HTMLElement) => {
     const r = el.getBoundingClientRect();
     useUI
@@ -264,7 +256,7 @@ export function CellNode({ data, selected, dragging }: NodeProps<CanvasNode>) {
         style={
           {
             "--header": cell.color,
-            minHeight: cell.opened && !selected ? cell.height : undefined,
+            minHeight: cell.opened ? cell.height : undefined,
             "--header-text": ["#784f67", "#79547e"].includes(cell.color)
               ? "#f1d1e8"
               : "#c1f4f5",

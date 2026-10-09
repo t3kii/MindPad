@@ -124,6 +124,14 @@ export function Navigation({
       },
     ]);
   };
+  const backgroundOptions = (el: HTMLElement) => {
+    const r = el.getBoundingClientRect();
+    useUI.getState().menuAt(r.left, r.bottom + 10, [
+      { label: "Dark background", action: () => s.setBackground("dark") },
+      { label: "Lighter background", action: () => s.setBackground("lighter") },
+      { label: "Light background", action: () => s.setBackground("light") },
+    ]);
+  };
   return (
     <header className="topbar">
       <div className="nav-left">
@@ -198,6 +206,15 @@ export function Navigation({
         <Button label="Search" onClick={onSearch}>
           <Search />
         </Button>
+        <button
+          className="background-button"
+          aria-label="Background options"
+          aria-haspopup="menu"
+          title={`Background: ${s.background}`}
+          onClick={(e) => backgroundOptions(e.currentTarget)}
+        >
+          <Sun size={18} /> <span>Background</span>
+        </button>
         <button
           className="display-button"
           aria-label="Display settings"
